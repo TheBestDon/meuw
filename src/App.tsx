@@ -1,26 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom'
+import { PageWrapper } from './state'
+import Breeds from './components/Cats/Breeds'
+import styled from 'styled-components'
+
+const AppStyles = styled.div`
+  margin: 50px auto;
+  width: 380px;
+
+  .container {
+    background-color: #1d1e26;
+    border: 4px solid #9580ff;
+    border-radius: 6px;
+    padding: 25px;
+  }
+`
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <AppStyles>
+      <Router>
+        <PageWrapper>
+          <div className="container">
+            <header>
+              <Link to="/">Home</Link>
+            </header>
+            <Routes>
+              <Route path="/*" element={<Breeds />} />
+            </Routes>
+          </div>
+        </PageWrapper>
+      </Router>
+    </AppStyles>
+  )
 }
 
-export default App;
+export default App
