@@ -23,14 +23,10 @@ export default function useBreedList(): [Breed[], Status] {
     async function requestBreedList() {
       setBreedList([])
       setStatus('loading')
-      const res = await fetch(`https://api.thecatapi.com/v1/breeds`, {
+      const res = await fetch(process.env.REACT_APP_API_URL, {
         headers: { 'x-api-key': process.env.REACT_APP_CAT_API_KEY },
       })
       const json = (await res.json()) as BreedListAPIResponse
-      console.log(
-        '🚀 ~ file: useBreedList.tsx ~ line 30 ~ requestBreedList ~ json',
-        json
-      )
       localCache['breeds'] = json || []
       setBreedList(localCache['breeds'])
       setStatus('loaded')
