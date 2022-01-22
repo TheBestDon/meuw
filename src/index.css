@@ -1,9 +1,19 @@
 :root {
     --green: #50fa7b;
     --black: #2a2c37;
+    --black-2: #1d1e26;
+    --white: #f8f8f2;
+    --purple: #9580ff;
+    --grey-1: #c8c8c8;
 
     --clr-bg: var(--black);
+    --clr-bg-2: var(--black-2);
     --clr-primary: var(--green);
+    --clr-secondary: var(--purple);
+    --clr-card-bg-hover: rgba(255, 255, 255, 0.1);
+    --clr-text: var(--white);
+
+    --window-height: 60vh;
 }
 
 * {
@@ -17,4 +27,10 @@
     margin: 0;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+
+  .dark {
+      --clr-bg: var(--white);
+      --clr-bg-2: var(--grey-1);
+      --clr-text: var(--black);
   }
