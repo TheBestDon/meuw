@@ -25,9 +25,7 @@ const toggleTheme = () => {
 }
 
 const Toggle = () => {
-  const { isToggled, toggle } = useToggle(
-    document.getElementById('root').classList.contains('dark')
-  )
+  const { isToggled, toggle } = useToggle(false)
 
   return (
     <Button
