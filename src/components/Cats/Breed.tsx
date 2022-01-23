@@ -78,7 +78,6 @@ const Breed: FunctionComponent = () => {
   const [breed, setBreed] = useState(null)
   const [props, setProps] = useState([])
 
-  console.log('🚀 ~ file: Breed.tsx ~ line 50 ~ props', props)
   useEffect(() => {
     const breed = breeds.find((b) => b.id === id)
     const props = Object.entries(breed)
@@ -96,7 +95,7 @@ const Breed: FunctionComponent = () => {
     <Wrapper>
       <div className="breed-title">
         <img
-          src={breed?.image?.url || '/assets/img/default_cat.png'}
+          src={breed?.image?.url || `${process.env.PUBLIC_URL}/assets/img/default_cat.png`}
           alt={breed?.name}
           className="breed-image"
         />

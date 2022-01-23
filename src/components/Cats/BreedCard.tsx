@@ -52,7 +52,7 @@ const BreedCard = ({ data }) => {
   return (
       <StyledLink to={data?.id}>
         <img
-          src={data?.image?.url || '/assets/img/default_cat.png'}
+          src={data?.image?.url || `${process.env.PUBLIC_URL}/assets/img/default_cat.png`}
           alt={data?.name}
           className="breed-card-icon"
         />
