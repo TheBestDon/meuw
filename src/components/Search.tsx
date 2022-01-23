@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, FunctionComponent, ChangeEvent } from "react";
 import styled from 'styled-components'
+import { Breed } from "../../types";
 import { useAppState } from "../state";
 import Results from "./Results";
 
@@ -29,13 +30,15 @@ select {
 }
 
 input[type="search"] {
-    color: var(--clr-secondary);
 	letter-spacing: 2px;
-	text-shadow: 0 0 2px var(--black);
 }
 `
+interface IProps {
+    data: Breed[];
+    handleSearch: (query: string) => void;
+}
 
-const Search = ({ data, handleSearch }) => {
+const Search: FunctionComponent<IProps> = ({ data, handleSearch }) => {
   const [name, setName] = useState("");
   const [breed, setBreed] = useState("");
   const [query, setQuery] = useState("");
@@ -46,12 +49,12 @@ const Search = ({ data, handleSearch }) => {
     handleSearch(query)
   }, [query]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const handleName = (e) => {
+  const handleName = (e: ChangeEvent<HTMLInputElement>) => {
     setBreed("")
     setName(e.target.value);
     setQuery(e.target.value);
   }
-  const handleBreed = (e) => {
+  const handleBreed = (e: ChangeEvent<HTMLSelectElement>) => {
     setName("")
     setBreed(e.target.value);
     setQuery(e.target.value);
@@ -84,7 +87,7 @@ const Search = ({ data, handleSearch }) => {
             onBlur={handleBreed}
           >
             <option />
-            {breeds.map((breed) => (
+            {breeds.map((breed: Breed) => (
               <option key={breed.name} value={breed.name}>
                 {breed.name}
               </option>

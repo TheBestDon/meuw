@@ -1,10 +1,16 @@
-import React, { FunctionComponent, useEffect, useState } from 'react'
+import React, {
+  ChangeEvent,
+  FunctionComponent,
+  useEffect,
+  useState
+} from 'react'
 import { useSearchParams } from 'react-router-dom'
 import styled from 'styled-components'
 import { Breed } from '../../../types'
 import { useAppState } from '../../state'
 import Loader from '../Loader'
 import Search from '../Search'
+
 
 const Wrapper = styled.div`
   .breed-index-list {
@@ -15,8 +21,7 @@ const Wrapper = styled.div`
     display: flex;
     align-items: center;
     span {
-      width: 35px;
-      color: #fff;
+      color: var(--white);
       margin-right: 10px;
     }
     label {
@@ -33,28 +38,25 @@ const BreedIndex: FunctionComponent = () => {
 
   useEffect(() => {
     setData(breeds)
-  }, [status]); // eslint-disable-line react-hooks/exhaustive-deps
-
-
+  }, [status]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleSearch = (query: string): void => {
-      if(query.length < 3) {
-        setData(breeds)
-        return
-      }
-    const filtered = breeds.filter(breed => breed.name.toLowerCase().includes(query.toLowerCase()))
+    if (query.length < 3) {
+      setData(breeds)
+      return
+    }
+    const filtered = breeds.filter((breed) =>
+      breed.name.toLowerCase().includes(query.toLowerCase())
+    )
     setData(filtered)
   }
 
-  const sortBreedsFromParams = (
-    data: Breed[],
-    params: { [x: string]: string; sort?: string; order?: string }
-  ) => {
+  const sortBreedsFromParams = (data: Breed[], params) => {
     if (!Object.keys(params).length) {
       setData(data)
       return
     }
-    const sortedData = data.sort((a, b) => {
+    const sortedData = [...data].sort((a, b) => {
       const { sort, order } = params
       switch (order) {
         case 'ascending':
@@ -70,7 +72,7 @@ const BreedIndex: FunctionComponent = () => {
     setData(sortedData)
   }
 
-  const updateParams = (e: { target: { name: any; value: any } }) => {
+  const updateParams = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
     const params = Object.fromEntries(searchParams)
     const newParams = { ...params, [name]: value }
@@ -78,8 +80,8 @@ const BreedIndex: FunctionComponent = () => {
     sortBreedsFromParams(data, newParams)
   }
 
-  if(status !== 'loaded') {
-      return <Loader />
+  if (status !== 'loaded') {
+    return <Loader />
   }
 
   return (

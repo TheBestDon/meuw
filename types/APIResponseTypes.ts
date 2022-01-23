@@ -1,3 +1,5 @@
+import { Country } from ".";
+
 type Rate = 1 | 2 | 3 | 4 | 5 ;
 type Boolean = 0 | 1 ;
 
@@ -13,8 +15,8 @@ export interface Breed {
         vcahospitals_url: string;
         temperament: string;
         origin: string;
-        country_codes: string;
-        country_code: string;
+        country_codes: Country;
+        country_code: Country;
         description: string;
         life_span: string;
         indoor: Boolean;

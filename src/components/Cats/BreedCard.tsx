@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { FunctionComponent } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import { Country } from '../../../types'
+import { Breed, Country } from '../../../types'
 
 const StyledLink = styled(Link)`
   display: flex;
@@ -44,7 +44,7 @@ const StyledLink = styled(Link)`
     margin: 0;
   }
 `
-const BreedCard = ({ data }) => {
+const BreedCard: FunctionComponent<{ data: Breed}> = ({ data }) => {
     const getFlagEmoji = (countryCode: Country) => {
         const codePoints = countryCode.toUpperCase().split('').map(char => 127397 + char.charCodeAt(0))
         return String.fromCodePoint(...codePoints)

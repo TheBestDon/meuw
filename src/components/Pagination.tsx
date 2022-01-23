@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { FunctionComponent, MouseEvent, useState } from 'react'
 import styled from 'styled-components'
+import { Breed } from '../../types'
 
 const Wrapper = styled.div`
   .pagination {
@@ -50,10 +51,17 @@ const Wrapper = styled.div`
   .prev.disabled,
   .next.disabled {
     pointer-events: none;
-    color: #999;
+    color: var(--grey-1);
   }
 `
-const Pagination = ({ data, RenderComponent, title, pageLimit, dataLimit }) => {
+interface IProps {
+    data: Breed[],
+    RenderComponent: FunctionComponent<any>,
+    title: string,
+    pageLimit: number,
+    dataLimit: number,
+}
+const Pagination: FunctionComponent<IProps> = ({ data, RenderComponent, title, pageLimit, dataLimit }) => {
   const [pages] = useState(Math.ceil(data.length / dataLimit))
   const [currentPage, setCurrentPage] = useState(1)
 
@@ -63,8 +71,8 @@ const Pagination = ({ data, RenderComponent, title, pageLimit, dataLimit }) => {
   const goToPreviousPage = () => {
     setCurrentPage((page) => page - 1)
   }
-  const changePage = (e): void => {
-    const pageNumber = Number(e.target.textContent)
+  const changePage = (e: MouseEvent<HTMLButtonElement>) => {
+    const pageNumber = Number(e.currentTarget.textContent)
     setCurrentPage(pageNumber)
   }
   const getPaginatedData = () => {
@@ -86,8 +94,8 @@ const Pagination = ({ data, RenderComponent, title, pageLimit, dataLimit }) => {
 
       {/* show the components, 10 components at a time */}
       <div className="dataContainer">
-        {getPaginatedData().map((d: React.FunctionComponent, idx: number) => (
-          <RenderComponent key={idx} data={d} />
+        {getPaginatedData().map((d, id: number) => (
+          <RenderComponent key={id} data={d} />
         ))}
       </div>
 

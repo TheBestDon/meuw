@@ -1,9 +1,14 @@
 import React, { FunctionComponent, useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
+import { Breed as BreedType } from '../../../types'
 import { useAppState } from '../../state'
 import StarRating from '../StarRating'
 
+interface IProps {
+    key: string;
+    value: number
+}
 const Wrapper = styled.div`
   color: var(--clr-text);
   background-color: var(--clr-bg);
@@ -74,16 +79,17 @@ const Breed: FunctionComponent = () => {
   const { id } = useParams()
   const navigate = useNavigate()
   const { breeds } = useAppState()
-  const [breed, setBreed] = useState(null)
-  const [props, setProps] = useState([])
+  const [breed, setBreed] = useState({} as BreedType)
+  const [props, setProps] = useState([] as IProps[])
 
   useEffect(() => {
-    const breed = breeds.find((b) => b.id === id)
+    const breed = (breeds.find((b) => b.id === id))
     if(!breed) return
+    setBreed(breed)
+
     const props = Object.entries(breed)
       .filter(([key, value]) => typeof value === 'number' && value > 0)
       .map(([key, value]) => ({ key, value }))
-    setBreed(breed)
     setProps(props)
   }, [id, breeds])
 
