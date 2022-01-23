@@ -5,6 +5,7 @@ import Breeds from './components/Cats/Breeds'
 import styled from 'styled-components'
 import Toggle from './components/Toggle'
 import NotFound from './components/NotFound'
+import ErrorBoundary from './components/ErrorBoundary'
 
 const AppStyles = styled.div`
   margin: 50px auto;
@@ -23,19 +24,21 @@ const AppStyles = styled.div`
   }
 `
 
-function App() {
+const App = () => {
   return (
     <AppStyles>
       <Router basename={process.env.PUBLIC_URL}>
         <PageWrapper>
           <div className="container">
             <header>
-              <Toggle />
+              <Toggle aria-label="theme toggler"/>
             </header>
-            <Routes>
-              <Route path="/*" element={<Breeds />} />
-              <Route path='*' element={<NotFound />} />
-            </Routes>
+            <ErrorBoundary>
+              <Routes>
+                <Route path="/*" element={<Breeds />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </ErrorBoundary>
           </div>
         </PageWrapper>
       </Router>

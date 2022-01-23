@@ -1,7 +1,6 @@
 {
   "name": "frontend",
   "version": "0.1.0",
-  "private": true,
   "homepage": "https://thebestdon.github.io/meuw",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.1",
@@ -47,6 +46,7 @@
     "@types/node": "^16.11.21",
     "@types/react": "^17.0.38",
     "@types/react-dom": "^17.0.11",
+    "@types/react-router-dom": "^5.3.3",
     "@types/styled-components": "^5.1.21",
     "gh-pages": "^3.2.3"
   }
