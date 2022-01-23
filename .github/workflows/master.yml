@@ -36,8 +36,7 @@ jobs:
       run: |
        git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
        npm run deploy -- -u "TheBestDon <donatas_bakanas@yahoo.com>"
-  env:
-    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         REACT_APP_API_URL: ${{ secrets.REACT_APP_API_URL }}
         REACT_APP_API_TOKEN: ${{ secrets.REACT_APP_CAT_API_KEY }}
