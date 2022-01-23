@@ -1,0 +1,19 @@
+import Star from "./Star";
+
+const maxStars = 5;
+
+const StarRating = ({ rating }) => {
+
+  return (
+    <span>
+      {Array(maxStars)
+        .fill(0)
+        .map((_, index) => (
+          <Star
+           key={index}
+           filled={index < rating} />
+        ))}
+    </span>
+  );
+}
+export default StarRating;
