@@ -4,6 +4,7 @@ import { PageWrapper } from './state'
 import Breeds from './components/Cats/Breeds'
 import styled from 'styled-components'
 import Toggle from './components/Toggle'
+import NotFound from './components/NotFound'
 
 const AppStyles = styled.div`
   margin: 50px auto;
@@ -25,7 +26,7 @@ const AppStyles = styled.div`
 function App() {
   return (
     <AppStyles>
-      <Router>
+      <Router basename={process.env.PUBLIC_URL}>
         <PageWrapper>
           <div className="container">
             <header>
@@ -33,6 +34,7 @@ function App() {
             </header>
             <Routes>
               <Route path="/*" element={<Breeds />} />
+              <Route path='*' element={<NotFound />} />
             </Routes>
           </div>
         </PageWrapper>

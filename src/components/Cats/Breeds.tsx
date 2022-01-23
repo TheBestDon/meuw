@@ -23,7 +23,7 @@ const Breeds = () => {
   return (
     <Wrapper>
       <Link to="/">
-        <img src="/assets/img/cat_logo.svg" alt="Cat Breeds" className="Logo" />
+        <img src={`${process.env.PUBLIC_URL}/assets/img/cat_logo.svg`} alt="Cat Breeds" className="Logo" />
       </Link>
       <Routes>
         <Route path="/" element={<BreedIndex />} />

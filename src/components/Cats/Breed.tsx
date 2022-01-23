@@ -78,9 +78,9 @@ const Breed: FunctionComponent = () => {
   const [breed, setBreed] = useState(null)
   const [props, setProps] = useState([])
 
-  console.log('🚀 ~ file: Breed.tsx ~ line 50 ~ props', props)
   useEffect(() => {
     const breed = breeds.find((b) => b.id === id)
+    if(!breed) return
     const props = Object.entries(breed)
       .filter(([key, value]) => typeof value === 'number' && value > 0)
       .map(([key, value]) => ({ key, value }))
@@ -88,15 +88,15 @@ const Breed: FunctionComponent = () => {
     setProps(props)
   }, [id, breeds])
 
-  if (breed === null) {
-    return <Loader />
+  if(!breed) {
+    return <div>No breed found</div>
   }
 
   return (
     <Wrapper>
       <div className="breed-title">
         <img
-          src={breed?.image?.url || '/assets/img/default_cat.png'}
+          src={breed?.image?.url || `${process.env.PUBLIC_URL}/assets/img/default_cat.png`}
           alt={breed?.name}
           className="breed-image"
         />
