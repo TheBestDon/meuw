@@ -32,8 +32,12 @@ jobs:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_DEPS_PERSONAL_ACCESS_TOKEN }}
     - name: test
       run: npm run test
-    - name: deploy
-      run: npm run deploy
+    - name: Deploy with gh-pages
+      run: |
+       git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+       npm run deploy -- -u "TheBestDon <donatas_bakanas@yahoo.com>"
+  env:
+    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       env:
         REACT_APP_API_URL: ${{ secrets.REACT_APP_API_URL }}
         REACT_APP_API_TOKEN: ${{ secrets.REACT_APP_CAT_API_KEY }}
