@@ -2,7 +2,6 @@ import React, { FunctionComponent, useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { useAppState } from '../../state'
-import Loader from '../Loader'
 import StarRating from '../StarRating'
 
 const Wrapper = styled.div`
