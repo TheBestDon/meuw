@@ -24,7 +24,7 @@ const toggleTheme = () => {
   }
 }
 
-const Toggle = () => {
+const Toggle = (props) => {
   const { isToggled, toggle } = useToggle(false)
 
   return (
@@ -33,6 +33,7 @@ const Toggle = () => {
         toggle()
         toggleTheme()
       }}
+      {...props}
     >
       {isToggled ? (
         <svg
