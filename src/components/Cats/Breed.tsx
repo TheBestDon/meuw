@@ -80,6 +80,7 @@ const Breed: FunctionComponent = () => {
 
   useEffect(() => {
     const breed = breeds.find((b) => b.id === id)
+    if(!breed) return
     const props = Object.entries(breed)
       .filter(([key, value]) => typeof value === 'number' && value > 0)
       .map(([key, value]) => ({ key, value }))
@@ -87,8 +88,8 @@ const Breed: FunctionComponent = () => {
     setProps(props)
   }, [id, breeds])
 
-  if (breed === null) {
-    return <Loader />
+  if(!breed) {
+    return <div>No breed found</div>
   }
 
   return (

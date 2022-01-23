@@ -78,6 +78,8 @@ const Pagination = ({ data, RenderComponent, title, pageLimit, dataLimit }) => {
     return new Array(pageCount).fill(1).map((_, idx) => start + idx + 1)
   }
 
+  if(data.length === 0) return <div>Nothing found</div>
+
   return (
     <Wrapper>
       <h1>{title}</h1>
