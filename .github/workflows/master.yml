@@ -1,0 +1,39 @@
+name: deploy to github pages
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v2
+      with:
+        node-version: '12.x'
+        registry-url: 'https://npm.pkg.github.com'
+        scope: '@thebestdon'
+        always-auth: true
+    - name: Cache multiple paths
+      uses: actions/cache@v2
+      with:
+        path: |
+          ~/.npm
+          **/node_modules
+        key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+
+    - name: install deps
+      run: npm ci
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_DEPS_PERSONAL_ACCESS_TOKEN }}
+    - name: test
+      run: npm run test
+    - name: deploy
+      run: npm run deploy
+      env:
+        REACT_APP_API_URL: ${{ secrets.REACT_APP_API_URL }}
+        REACT_APP_API_TOKEN: ${{ secrets.REACT_APP_CAT_API_KEY }}
