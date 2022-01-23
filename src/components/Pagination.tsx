@@ -55,7 +55,6 @@ const Wrapper = styled.div`
 `
 const Pagination = ({ data, RenderComponent, title, pageLimit, dataLimit }) => {
   const [pages] = useState(Math.ceil(data.length / dataLimit))
-  console.log("🚀 ~ file: Pagination.tsx ~ line 58 ~ Pagination ~ pages", pages)
   const [currentPage, setCurrentPage] = useState(1)
 
   const goToNextPage = () => {

@@ -13,7 +13,6 @@ export default function useBreedList(): [Breed[], Status] {
 
   useEffect(() => {
     if (localCache['breeds']) {
-      console.log('Cache used')
       setBreedList(localCache['breeds'])
       setStatus('loaded')
     } else {
