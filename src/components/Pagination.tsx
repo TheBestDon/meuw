@@ -3,6 +3,9 @@ import styled from 'styled-components'
 import { Breed } from '../../types'
 
 const Wrapper = styled.div`
+  .title {
+    font-size: var(--h2);
+  }
   .pagination {
     display: flex;
     align-items: center;
@@ -90,7 +93,7 @@ const Pagination: FunctionComponent<IProps> = ({ data, RenderComponent, title, p
 
   return (
     <Wrapper>
-      <h1>{title}</h1>
+      <h1 className='title'>{title}</h1>
 
       {/* show the components, 10 components at a time */}
       <div className="dataContainer">

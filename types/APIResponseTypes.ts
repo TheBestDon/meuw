@@ -10,9 +10,9 @@ export interface Breed {
         },
         id: string;
         name: string;
-        cfa_url: string;
-        vetstreet_url: string;
-        vcahospitals_url: string;
+        cfa_url?: string;
+        vetstreet_url?: string;
+        vcahospitals_url?: string;
         temperament: string;
         origin: string;
         country_codes: Country;

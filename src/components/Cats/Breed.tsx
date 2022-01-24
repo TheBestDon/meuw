@@ -9,7 +9,8 @@ interface IProps {
     key: string;
     value: number
 }
-const Wrapper = styled.div`
+
+const Wrapper = styled.article`
   color: var(--clr-text);
   background-color: var(--clr-bg);
   border-radius: 6px;
@@ -17,6 +18,11 @@ const Wrapper = styled.div`
 
   .breed-title {
     display: flex;
+
+    figcaption {
+      font-size: var(--small-text);
+      font-weight: bold;
+    }
   }
   .breed-image {
     width: 150px;
@@ -100,11 +106,14 @@ const Breed: FunctionComponent = () => {
   return (
     <Wrapper>
       <div className="breed-title">
-        <img
-          src={breed?.image?.url || `${process.env.PUBLIC_URL}/assets/img/default_cat.png`}
-          alt={breed?.name}
-          className="breed-image"
-        />
+        <figure>
+          <img
+            src={breed?.image?.url || `${process.env.PUBLIC_URL}/assets/img/default_cat.png`}
+            alt={breed?.name}
+            className="breed-image"
+          />
+          <figcaption>Image of {breed?.name}</figcaption>
+        </figure>
         <div>
           <h1 className="breed-name">{breed?.name}</h1>
         </div>
