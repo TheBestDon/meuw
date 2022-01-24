@@ -9,6 +9,7 @@ interface IProps {
     key: string;
     value: number
 }
+
 const Wrapper = styled.article`
   color: var(--clr-text);
   background-color: var(--clr-bg);
